@@ -31,6 +31,8 @@
     <string name="no_inventory">You are not carrying anything.</string>
 
     <string name="no_drop">You are not carrying anything to drop.</string>
-    <string name="drop_msg">You dropped</string>
+    <string name="drop_msg">You drop</string>
 
+    <string name="no_get">There is nothing here to pick up.</string>
+    <string name="get_msg">You pick up</string>
 </resources>

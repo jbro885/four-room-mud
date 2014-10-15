@@ -92,4 +92,12 @@ public class Room {
     public void setExit(int whichExit, Room destination) {
         mExits[whichExit] = destination;
     }
+
+    /**
+     * Determine whether Player can pick up an item from a particular room
+     * @param player Player attempting the pick up
+     * @param item Item being picked up
+     * @return true If the player can pick this item up in this room
+     */
+    public boolean canGet(Player player, Item item) { return true; }
 }

@@ -108,8 +108,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         // Create an item and add it to mItems and the first room
         Item i = new Item(getString(R.string.item0_name));
         mItems.add(i);
-        //room0.addContents(i);
-        mPlayer.addInventory(i);
+        room0.addContents(i);
 
         // Set the Player location to the first room
         mPlayer.setLocation(room0);
@@ -131,6 +130,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 doInventory();
                 break;
             case R.id.action_get:
+                doGet();
                 break;
             case R.id.action_drop:
                 doDrop();
@@ -158,6 +158,52 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
         }
     }
+
+    /**
+     * Displays a list of items in the room and allows them to select one to pick up, or displays no_get message
+     */
+    public void doGet() {
+        ArrayList<Item> contents = mPlayer.getLocation().getContents();
+        if(contents.size() == 0) {
+            addOutput(getString(R.string.no_get) + "\n");
+            return;
+        }
+
+        // Set up our adapter and item click listeners
+        ItemListAdapter adapter = new ItemListAdapter(contents);
+        mListView.setAdapter(adapter);
+        mListView.setOnItemClickListener(getItemClickListener);
+        mListView.setVisibility(View.VISIBLE);
+
+        // Hide Game Output
+        mScrollView.setVisibility(View.GONE);
+    }
+
+    /**
+     * Handles getting an object once the player has selected one from the list
+     */
+    private AdapterView.OnItemClickListener getItemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            // Gather the elements of this action: Room, Player, Item
+            Item item = (Item)adapterView.getItemAtPosition(i);
+            Room room = mPlayer.getLocation();
+
+            // Check whether any of the objects have any objection to this action
+            if(item.canGet(mPlayer, room) && room.canGet(mPlayer, item) && mPlayer.canGet(item, room)) {
+                // Nobody objected, move the item
+                room.removeContents(item);
+                mPlayer.addInventory(item);
+
+                // Output drop message
+                addOutput(getString(R.string.get_msg) + " " + item.getName() + ".\n");
+            }
+
+            // Hide the ListView and redisplay the Game Output
+            mListView.setVisibility(View.GONE);
+            mScrollView.setVisibility(View.VISIBLE);
+        }
+    };
 
     /**
      * Displays a list of items the player is carrying and allows them to select one to drop, or displays no_drop message

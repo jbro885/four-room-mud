@@ -60,4 +60,12 @@ public class Player {
     public boolean removeInventory(Item item) {
         return mInventory.remove(item);
     }
+
+    /**
+     * Determine whether Player can pick up an item from a particular room
+     * @param item The item being picked up
+     * @param room The room the action is taking place in
+     * @return true If the item can be picked up
+     */
+    public boolean canGet(Item item, Room room) { return true; }
 }
