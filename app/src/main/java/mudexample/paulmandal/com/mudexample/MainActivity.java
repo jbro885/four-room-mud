@@ -222,8 +222,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         // Build full output
         String output = currentLocation.getTitle() + "\n";
         output += currentLocation.getDescription() + "\n";
-        output += exitStr + "\n";
-        output += contentsStr + "\n\n";
+        output += contentsStr + "\n";
+        output += exitStr + "\n\n";
 
         // Update Game Output
         addOutput(output);
