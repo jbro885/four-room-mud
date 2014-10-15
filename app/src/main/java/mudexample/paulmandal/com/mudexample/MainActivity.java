@@ -5,9 +5,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
+
+    /**
+     * TextView for Game Output
+     */
+    private TextView mGameOutput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +31,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.action_west).setOnClickListener(this);
         findViewById(R.id.action_font_increase).setOnClickListener(this);
         findViewById(R.id.action_font_decrease).setOnClickListener(this);
+
+        // Get reference to game output TextView
+        mGameOutput = (TextView)findViewById(R.id.game_output);
     }
 
     @Override
