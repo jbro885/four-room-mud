@@ -15,6 +15,7 @@
     <string name="room1_desc">This is where you truly begin your journey.</string>
 
     <string name="item0_name">a rock</string>
+    <string name="item1_name">a slippery rock</string>
 
     <string name="north">north</string>
     <string name="south">south</string>
@@ -35,4 +36,5 @@
 
     <string name="no_get">There is nothing here to pick up.</string>
     <string name="get_msg">You pick up</string>
+    <string name="get_failed_msg">You try to pick up %s but you can\'t!</string>
 </resources>

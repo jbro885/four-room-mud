@@ -106,9 +106,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         room0.setExit(Room.EXIT_EAST, room1);
 
         // Create an item and add it to mItems and the first room
-        Item i = new Item(getString(R.string.item0_name));
-        mItems.add(i);
-        room0.addContents(i);
+        Item item0 = new Item(getString(R.string.item0_name));
+        mItems.add(item0);
+        room0.addContents(item0);
+
+        // Create a slippery item and add it to mItems and the first room
+        SlipperyItem item1 = new SlipperyItem(getString(R.string.item1_name));
+        mItems.add(item1);
+        room0.addContents(item1);
 
         // Set the Player location to the first room
         mPlayer.setLocation(room0);
@@ -195,8 +200,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 room.removeContents(item);
                 mPlayer.addInventory(item);
 
-                // Output drop message
+                // Output get message
                 addOutput(getString(R.string.get_msg) + " " + item.getName() + ".\n");
+            } else {
+                // Output failure to get message
+                addOutput(getString(R.string.get_failed_msg, item.getName()) + "\n");
             }
 
             // Hide the ListView and redisplay the Game Output
