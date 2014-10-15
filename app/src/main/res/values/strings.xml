@@ -14,6 +14,12 @@
     <string name="room1_title">Journey Room</string>
     <string name="room1_desc">This is where you truly begin your journey.</string>
 
+    <string name="room2_title">Larger Room</string>
+    <string name="room2_desc">This room looks larger than the others.</string>
+
+    <string name="room3_title">Small Room</string>
+    <string name="room3_desc">This room is very small.</string>
+
     <string name="item0_name">a rock</string>
     <string name="item1_name">a slippery rock</string>
 

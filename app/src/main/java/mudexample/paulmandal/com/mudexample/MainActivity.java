@@ -102,18 +102,36 @@ public class MainActivity extends Activity implements View.OnClickListener {
         Room room1 = new Room(getString(R.string.room1_title), getString(R.string.room1_desc));
         mRooms.add(room1);
 
-        // Create an exit from room0->room1
+        // Create the 3rd room and add it to mRooms
+        Room room2 = new Room(getString(R.string.room2_title), getString(R.string.room2_desc));
+        mRooms.add(room2);
+
+        // Create the 4th room and add it to mRooms
+        Room room3 = new Room(getString(R.string.room3_title), getString(R.string.room3_desc));
+        mRooms.add(room3);
+
+        // Create exits to make these rooms into a square
         room0.setExit(Room.EXIT_EAST, room1);
+        room0.setExit(Room.EXIT_SOUTH, room2);
+
+        room1.setExit(Room.EXIT_WEST, room0);
+        room1.setExit(Room.EXIT_SOUTH, room3);
+
+        room2.setExit(Room.EXIT_NORTH, room0);
+        room2.setExit(Room.EXIT_EAST, room3);
+
+        room3.setExit(Room.EXIT_NORTH, room1);
+        room3.setExit(Room.EXIT_WEST, room2);
 
         // Create an item and add it to mItems and the first room
         Item item0 = new Item(getString(R.string.item0_name));
         mItems.add(item0);
         room0.addContents(item0);
 
-        // Create a slippery item and add it to mItems and the first room
+        // Create a slippery item and add it to mItems and the last room
         SlipperyItem item1 = new SlipperyItem(getString(R.string.item1_name));
         mItems.add(item1);
-        room0.addContents(item1);
+        room3.addContents(item1);
 
         // Set the Player location to the first room
         mPlayer.setLocation(room0);
