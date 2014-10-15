@@ -3,6 +3,8 @@ package mudexample.paulmandal.com.mudexample;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -132,8 +134,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 doMove(Room.EXIT_WEST);
                 break;
             case R.id.action_font_increase:
+                // Scale up the font size and re-scroll to the bottom
+                mGameOutput.setTextSize(TypedValue.COMPLEX_UNIT_PX, mGameOutput.getTextSize() + 1);
+                mScrollView.postDelayed(scrollRunnable, 100);
                 break;
             case R.id.action_font_decrease:
+                // Scale down the font size
+                mGameOutput.setTextSize(TypedValue.COMPLEX_UNIT_PX, mGameOutput.getTextSize() - 1);
                 break;
         }
     }
