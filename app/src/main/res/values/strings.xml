@@ -18,10 +18,13 @@
     <string name="east">east</string>
     <string name="west">west</string>
 
-    <string name="exits">Exits: </string>
+    <string name="exits">Exits:</string>
     <string name="no_exits">There are no exits to this room.</string>
 
-    <string name="contents">Contents: </string>
+    <string name="contents">Contents:</string>
     <string name="no_contents">There is nothing here.</string>
+
+    <string name="inventory">Inventory:</string>
+    <string name="no_inventory">You are not carrying anything.</string>
 
 </resources>

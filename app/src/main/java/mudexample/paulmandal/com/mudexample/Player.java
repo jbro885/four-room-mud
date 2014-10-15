@@ -40,6 +40,12 @@ public class Player {
     public Room getLocation() { return mLocation; }
 
     /**
+     * Gets the player's inventory
+     * @return ArrayList<Item> every item the player is carrying
+     */
+    public ArrayList<Item> getInventory() { return mInventory; }
+
+    /**
      * Add item to the Player's inventory
      * @param item The item being added to the inventory
      */

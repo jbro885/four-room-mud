@@ -88,6 +88,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 doLook();
                 break;
             case R.id.action_inventory:
+                doInventory();
                 break;
             case R.id.action_get:
                 break;
@@ -106,6 +107,28 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.action_font_decrease:
                 break;
         }
+    }
+
+    /**
+     * Describes the player's inventory
+     */
+    public void doInventory() {
+        ArrayList<Item> inventory = mPlayer.getInventory();
+        String inventoryStr = "";
+        if(inventory.size() > 0) {
+            inventoryStr = getString(R.string.inventory) + " ";
+            boolean firstItem = true;
+            for(Item i : inventory) {
+                inventoryStr += (firstItem ? "" : ", ") + i.getName();
+                firstItem = false;
+            }
+            inventoryStr += ".";
+        } else {
+            inventoryStr = getString(R.string.no_inventory);
+        }
+
+        inventoryStr += "\n";
+        addOutput(inventoryStr);
     }
 
     /**
@@ -128,14 +151,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         // If there are any exits build the Exits: string, otherwise display the no_exits string
         if(exitsExist) {
-            exitStr = getString(R.string.exits);
+            exitStr = getString(R.string.exits) + " ";
             boolean firstExit = true;
             // Must be the same order as Room.EXIT_*
             String exitNames[] = {getString(R.string.north), getString(R.string.south), getString(R.string.east), getString(R.string.west)};
 
             for (int i = 0; i < exits.length; i++) {
                 if (exits[i] != null) {
-                    exitStr += (firstExit ? "" : ", ") + " " + exitNames[i];
+                    exitStr += (firstExit ? "" : ", ") + exitNames[i];
                     firstExit = false;
                 }
             }
@@ -148,11 +171,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
         ArrayList<Item> contents = currentLocation.getContents();
         String contentsStr = "";
         if(contents.size() > 0) {
-            contentsStr = getString(R.string.contents);
+            contentsStr = getString(R.string.contents) + " ";
             boolean firstItem = true;
 
             for(Item i : contents) {
-                contentsStr += (firstItem ? "" : ", ") + " " + i.getName();
+                contentsStr += (firstItem ? "" : ", ") + i.getName();
                 firstItem = false;
             }
             contentsStr += ".";
