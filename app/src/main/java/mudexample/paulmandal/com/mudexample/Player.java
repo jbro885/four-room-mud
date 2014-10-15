@@ -23,15 +23,15 @@ public class Player {
      * Add item to the Player's inventory
      * @param item The item being added to the inventory
      */
-    public void addInventory(Item item) {
-        mInventory.add(item);
+    public boolean addInventory(Item item) {
+        return mInventory.add(item);
     }
 
     /**
      * Remove item from the Player's inventory
      * @param item The item being removed from the inventory
      */
-    public void removeInventory(Item item) {
-        mInventory.remove(item);
+    public boolean removeInventory(Item item) {
+        return mInventory.remove(item);
     }
 }
