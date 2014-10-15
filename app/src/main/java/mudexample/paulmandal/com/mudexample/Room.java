@@ -45,6 +45,29 @@ public class Room {
     }
 
     /**
+     * Gets the title for this room
+     * @return String title for this room
+     */
+    public String getTitle() { return mTitle; }
+
+    /**
+     * Gets the description for this room
+     * @return String description for this room
+     */
+    public String getDescription() { return mDescription; }
+
+    /**
+     * Gets available exits for this room
+     * @return Room[] with references to any available exits
+     */
+    public Room[] getExits() { return mExits; }
+
+    /**
+     * Gets the contents of this room
+     * @return ArrayList<Item> of every item in this room
+     */
+    public ArrayList<Item> getContents() { return mContents; }
+    /**
      * Add item to the room's contents
      * @param item Item being added to the room's contents
      * @return

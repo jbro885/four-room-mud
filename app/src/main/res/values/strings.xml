@@ -8,4 +8,20 @@
     <string name="action_get">Get</string>
     <string name="action_drop">Drop</string>
 
+    <string name="room0_title">Starting Room</string>
+    <string name="room0_desc">This is the first room.</string>
+
+    <string name="item0_name">a rock</string>
+
+    <string name="north">north</string>
+    <string name="south">south</string>
+    <string name="east">east</string>
+    <string name="west">west</string>
+
+    <string name="exits">Exits: </string>
+    <string name="no_exits">There are no exits to this room.</string>
+
+    <string name="contents">Contents: </string>
+    <string name="no_contents">There is nothing here.</string>
+
 </resources>

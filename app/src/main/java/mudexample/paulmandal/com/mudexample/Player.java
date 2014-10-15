@@ -34,6 +34,12 @@ public class Player {
     }
 
     /**
+     * Gets the current location for this player
+     * @return Room object the player is currently inside
+     */
+    public Room getLocation() { return mLocation; }
+
+    /**
      * Add item to the Player's inventory
      * @param item The item being added to the inventory
      */
