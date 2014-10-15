@@ -30,4 +30,7 @@
     <string name="inventory">Inventory:</string>
     <string name="no_inventory">You are not carrying anything.</string>
 
+    <string name="no_drop">You are not carrying anything to drop.</string>
+    <string name="drop_msg">You dropped</string>
+
 </resources>

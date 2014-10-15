@@ -108,7 +108,8 @@
         android:layout_above="@+id/action_south"
         android:layout_below="@+id/action_north"
         android:layout_toLeftOf="@id/action_east"
-        android:layout_toRightOf="@id/action_west"></ListView>
+        android:layout_toRightOf="@id/action_west"
+        android:visibility="gone"></ListView>
 
     <ScrollView
         android:id="@+id/game_output_scrollview"

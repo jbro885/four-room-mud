@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -107,7 +108,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         // Create an item and add it to mItems and the first room
         Item i = new Item(getString(R.string.item0_name));
         mItems.add(i);
-        room0.addContents(i);
+        //room0.addContents(i);
+        mPlayer.addInventory(i);
 
         // Set the Player location to the first room
         mPlayer.setLocation(room0);
@@ -131,6 +133,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.action_get:
                 break;
             case R.id.action_drop:
+                doDrop();
                 break;
             case R.id.action_north:
                 doMove(Room.EXIT_NORTH);
@@ -155,6 +158,47 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
         }
     }
+
+    /**
+     * Displays a list of items the player is carrying and allows them to select one to drop, or displays no_drop message
+     */
+    public void doDrop() {
+        ArrayList<Item> inventory = mPlayer.getInventory();
+        if(inventory.size() == 0) {
+            addOutput(getString(R.string.no_drop) + "\n");
+            return;
+        }
+
+        // Set up our adapter and item click listeners
+        ItemListAdapter adapter = new ItemListAdapter(inventory);
+        mListView.setAdapter(adapter);
+        mListView.setOnItemClickListener(dropItemClickListener);
+        mListView.setVisibility(View.VISIBLE);
+
+        // Hide Game Output
+        mScrollView.setVisibility(View.GONE);
+    }
+
+    /**
+     * Handles dropping an object once the player has selected one from the list
+     */
+    private AdapterView.OnItemClickListener dropItemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            // Remove the item from the player's inventory
+            Item item = (Item)adapterView.getItemAtPosition(i);
+            mPlayer.removeInventory(item);
+            // Add item to the current room's contents
+            mPlayer.getLocation().addContents(item);
+
+            // Hide the ListView and redisplay the Game Output
+            mListView.setVisibility(View.GONE);
+            mScrollView.setVisibility(View.VISIBLE);
+
+            // Output drop message
+            addOutput(getString(R.string.drop_msg) + " " + item.getName() + ".\n");
+        }
+    };
 
     /**
      * Describes the player's inventory
