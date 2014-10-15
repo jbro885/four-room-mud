@@ -81,16 +81,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mPlayer = new Player();
 
         // Create the first room and add it to mRooms
-        Room r = new Room(getString(R.string.room0_title), getString(R.string.room0_desc));
-        mRooms.add(r);
+        Room room0 = new Room(getString(R.string.room0_title), getString(R.string.room0_desc));
+        mRooms.add(room0);
+
+        // Create the 2nd room and add it to mRooms
+        Room room1 = new Room(getString(R.string.room1_title), getString(R.string.room1_desc));
+        mRooms.add(room1);
+
+        // Create an exit from room0->room1
+        room0.setExit(Room.EXIT_EAST, room1);
 
         // Create an item and add it to mItems and the first room
         Item i = new Item(getString(R.string.item0_name));
         mItems.add(i);
-        r.addContents(i);
+        room0.addContents(i);
 
         // Set the Player location to the first room
-        mPlayer.setLocation(r);
+        mPlayer.setLocation(room0);
 
         // Update UI (exit buttons)
         updateUI();
@@ -113,12 +120,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.action_drop:
                 break;
             case R.id.action_north:
+                doMove(Room.EXIT_NORTH);
                 break;
             case R.id.action_south:
+                doMove(Room.EXIT_SOUTH);
                 break;
             case R.id.action_east:
+                doMove(Room.EXIT_EAST);
                 break;
             case R.id.action_west:
+                doMove(Room.EXIT_WEST);
                 break;
             case R.id.action_font_increase:
                 break;
@@ -234,7 +245,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
      * Update UI based on current game state, currently just displays/hides exit buttons
      */
     private void updateUI() {
-        // Same order as Room.EXITS_*
+        // Same order as Room.EXIT_*
         ImageView[] exitButtons = {mNorthButton, mSouthButton, mEastButton, mWestButton};
 
         // Loop through all exits disabling/enabling exitButtons if they are not null
@@ -246,6 +257,20 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 exitButtons[i].setVisibility(View.INVISIBLE);
             }
         }
+    }
+
+    /**
+     * Move the player in the supplied direction, direction should be one of the Room.EXIT_* ints
+     * @param direction Room.EXIT_*
+     */
+    private void doMove(int direction) {
+        // Update the player location
+        Room destination = mPlayer.getLocation().getExits()[direction];
+        mPlayer.setLocation(destination);
+        // Display room description and contents upon entry
+        doLook();
+        // Update the UI
+        updateUI();
     }
 
 }
