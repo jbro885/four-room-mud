@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -23,6 +24,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
      * ScrollView to scroll game text
      */
     private ScrollView mScrollView;
+
+    /**
+     * ImageViews for our Exit buttons
+     */
+    private ImageView mNorthButton;
+    private ImageView mSouthButton;
+    private ImageView mEastButton;
+    private ImageView mWestButton;
 
     /**
      * ArrayList of every Room in the game
@@ -60,6 +69,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mGameOutput = (TextView)findViewById(R.id.game_output);
         mScrollView = (ScrollView)findViewById(R.id.game_output_scrollview);
 
+        // Get references to the north/south/east/west buttons
+        mNorthButton = (ImageView)findViewById(R.id.action_north);
+        mSouthButton = (ImageView)findViewById(R.id.action_south);
+        mEastButton = (ImageView)findViewById(R.id.action_east);
+        mWestButton = (ImageView)findViewById(R.id.action_west);
+
         // Init game state
         mRooms = new ArrayList<Room>();
         mItems = new ArrayList<Item>();
@@ -76,6 +91,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         // Set the Player location to the first room
         mPlayer.setLocation(r);
+
+        // Update UI (exit buttons)
+        updateUI();
 
         // Force look()
         doLook();
@@ -211,5 +229,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
           mScrollView.fullScroll(View.FOCUS_DOWN);
         }
     };
+
+    /**
+     * Update UI based on current game state, currently just displays/hides exit buttons
+     */
+    private void updateUI() {
+        // Same order as Room.EXITS_*
+        ImageView[] exitButtons = {mNorthButton, mSouthButton, mEastButton, mWestButton};
+
+        // Loop through all exits disabling/enabling exitButtons if they are not null
+        Room[] exits = mPlayer.getLocation().getExits();
+        for(int i = 0 ; i < exits.length ; i++) {
+            if(exits[i] != null) {
+                exitButtons[i].setVisibility(View.VISIBLE);
+            } else {
+                exitButtons[i].setVisibility(View.INVISIBLE);
+            }
+        }
+    }
 
 }
