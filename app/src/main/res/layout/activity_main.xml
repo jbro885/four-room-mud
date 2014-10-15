@@ -5,6 +5,58 @@
     android:background="@color/black"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/action_look"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:textColor="@color/white"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:paddingBottom="8dp"
+        android:paddingRight="8dp"
+        android:text="@string/action_look">
+        </TextView>
+
+    <TextView
+        android:id="@+id/action_inventory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:textColor="@color/white"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/action_look"
+        android:paddingBottom="8dp"
+        android:paddingRight="8dp"
+        android:text="@string/action_inventory">
+    </TextView>
+
+    <TextView
+        android:id="@+id/action_get"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:textColor="@color/white"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/action_inventory"
+        android:paddingBottom="8dp"
+        android:paddingRight="8dp"
+        android:text="@string/action_get">
+    </TextView>
+
+    <TextView
+        android:id="@+id/action_drop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:textColor="@color/white"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/action_get"
+        android:paddingBottom="8dp"
+        android:paddingRight="8dp"
+        android:text="@string/action_drop">
+    </TextView>
+
     <ImageView
         android:id="@+id/action_north"
         android:layout_height="72dp"

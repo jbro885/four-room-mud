@@ -2,7 +2,10 @@
 <resources>
 
     <string name="app_name">MUD Example</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+
+    <string name="action_look">Look</string>
+    <string name="action_inventory">Inventory</string>
+    <string name="action_get">Get</string>
+    <string name="action_drop">Drop</string>
 
 </resources>
