@@ -9,110 +9,112 @@
         android:id="@+id/action_look"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:textColor="@color/white"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:paddingBottom="8dp"
         android:paddingRight="8dp"
-        android:text="@string/action_look">
-        </TextView>
+        android:text="@string/action_look"
+        android:textColor="@color/white"
+        android:textSize="24dp"></TextView>
 
     <TextView
         android:id="@+id/action_inventory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:textColor="@color/white"
         android:layout_alignParentRight="true"
         android:layout_below="@id/action_look"
         android:paddingBottom="8dp"
         android:paddingRight="8dp"
-        android:text="@string/action_inventory">
-    </TextView>
+        android:text="@string/action_inventory"
+        android:textColor="@color/white"
+        android:textSize="24dp"></TextView>
 
     <TextView
         android:id="@+id/action_get"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:textColor="@color/white"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/action_inventory"
         android:paddingBottom="8dp"
         android:paddingRight="8dp"
-        android:text="@string/action_get">
-    </TextView>
+        android:text="@string/action_get"
+        android:textColor="@color/white"
+        android:textSize="24dp"></TextView>
 
     <TextView
         android:id="@+id/action_drop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:textColor="@color/white"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/action_get"
         android:paddingBottom="8dp"
         android:paddingRight="8dp"
-        android:text="@string/action_drop">
-    </TextView>
+        android:text="@string/action_drop"
+        android:textColor="@color/white"
+        android:textSize="24dp"></TextView>
 
     <ImageView
         android:id="@+id/action_north"
-        android:layout_height="72dp"
         android:layout_width="72dp"
-        android:layout_centerHorizontal="true"
+        android:layout_height="72dp"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/action_north"></ImageView>
 
     <ImageView
         android:id="@+id/action_south"
-        android:layout_height="72dp"
         android:layout_width="72dp"
-        android:layout_centerHorizontal="true"
+        android:layout_height="72dp"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/action_south"></ImageView>
 
     <ImageView
         android:id="@+id/action_east"
-        android:layout_height="72dp"
         android:layout_width="72dp"
-        android:layout_centerVertical="true"
+        android:layout_height="72dp"
         android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:src="@drawable/action_east"></ImageView>
 
     <ImageView
         android:id="@+id/action_west"
-        android:layout_height="72dp"
         android:layout_width="72dp"
-        android:layout_centerVertical="true"
+        android:layout_height="72dp"
         android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
         android:src="@drawable/action_west"></ImageView>
 
     <ImageView
         android:id="@+id/action_font_increase"
-        android:layout_height="72dp"
         android:layout_width="72dp"
+        android:layout_height="72dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:src="@drawable/action_font_increase"></ImageView>
 
     <ImageView
         android:id="@+id/action_font_decrease"
-        android:layout_height="72dp"
         android:layout_width="72dp"
+        android:layout_height="72dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:src="@drawable/action_font_decrease"></ImageView>
 
-    <TextView
-        android:id="@+id/game_output"
+    <ScrollView
+        android:id="@+id/game_output_scrollview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/action_north"
         android:layout_above="@+id/action_south"
-        android:layout_toRightOf="@id/action_west"
+        android:layout_below="@+id/action_north"
         android:layout_toLeftOf="@id/action_east"
-        android:textColor="@color/white"></TextView>
+        android:layout_toRightOf="@id/action_west">
+
+        <TextView
+            android:id="@+id/game_output"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textColor="@color/white"></TextView>
+    </ScrollView>
 
 </RelativeLayout>

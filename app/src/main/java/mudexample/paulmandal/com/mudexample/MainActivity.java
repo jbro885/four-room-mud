@@ -2,9 +2,11 @@ package mudexample.paulmandal.com.mudexample;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,6 +18,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
      * TextView for Game Output
      */
     private TextView mGameOutput;
+
+    /**
+     * ScrollView to scroll game text
+     */
+    private ScrollView mScrollView;
 
     /**
      * ArrayList of every Room in the game
@@ -49,8 +56,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.action_font_increase).setOnClickListener(this);
         findViewById(R.id.action_font_decrease).setOnClickListener(this);
 
-        // Get reference to game output TextView
+        // Get reference to game output TextView and ScrollView
         mGameOutput = (TextView)findViewById(R.id.game_output);
+        mScrollView = (ScrollView)findViewById(R.id.game_output_scrollview);
 
         // Init game state
         mRooms = new ArrayList<Room>();
@@ -169,6 +177,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private void addOutput(String output) {
         String currentOutput = mGameOutput.getText().toString();
         mGameOutput.setText(currentOutput += output);
+        // Wait 100ms to scroll the ScrollView since mGameOutput's size won't update until the UI refreshes
+        mScrollView.postDelayed(scrollRunnable, 100);
     }
+
+    private Runnable scrollRunnable = new Runnable() {
+        @Override
+        public void run() {
+          // Scroll output window to the bottom
+          mScrollView.fullScroll(View.FOCUS_DOWN);
+        }
+    };
 
 }
