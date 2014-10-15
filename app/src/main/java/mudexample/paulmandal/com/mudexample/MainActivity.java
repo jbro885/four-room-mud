@@ -1,14 +1,19 @@
 package mudexample.paulmandal.com.mudexample;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -26,6 +31,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
      * ScrollView to scroll game text
      */
     private ScrollView mScrollView;
+
+    /**
+     * ListView for get/drop commands
+     */
+    private ListView mListView;
 
     /**
      * ImageViews for our Exit buttons
@@ -70,6 +80,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         // Get reference to game output TextView and ScrollView
         mGameOutput = (TextView)findViewById(R.id.game_output);
         mScrollView = (ScrollView)findViewById(R.id.game_output_scrollview);
+        mListView = (ListView)findViewById(R.id.listview);
 
         // Get references to the north/south/east/west buttons
         mNorthButton = (ImageView)findViewById(R.id.action_north);
@@ -278,6 +289,44 @@ public class MainActivity extends Activity implements View.OnClickListener {
         doLook();
         // Update the UI
         updateUI();
+    }
+
+    public class ItemListAdapter extends BaseAdapter {
+
+        private ArrayList<Item> data;
+        private LayoutInflater inflater = null;
+
+        public ItemListAdapter(ArrayList<Item> data) {
+            this.data = data;
+            inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        public int getCount() {
+            return data.size();
+        }
+
+        public Object getItem(int position) {
+            return data.get(position);
+        }
+
+        public long getItemId(int position) {
+            return position;
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view = convertView;
+            if(convertView==null) {
+                view = inflater.inflate(R.layout.item_listview_row, null);
+            }
+
+            TextView itemName = (TextView)view.findViewById(R.id.item_name);
+
+            Item item = data.get(position);
+
+            // Setting all values in listview
+            itemName.setText(item.getName());
+            return view;
+        }
     }
 
 }

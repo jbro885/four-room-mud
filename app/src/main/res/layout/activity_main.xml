@@ -101,6 +101,15 @@
         android:layout_alignParentLeft="true"
         android:src="@drawable/action_font_decrease"></ImageView>
 
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/action_south"
+        android:layout_below="@+id/action_north"
+        android:layout_toLeftOf="@id/action_east"
+        android:layout_toRightOf="@id/action_west"></ListView>
+
     <ScrollView
         android:id="@+id/game_output_scrollview"
         android:layout_width="fill_parent"
