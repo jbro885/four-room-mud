@@ -14,9 +14,23 @@ public class Player {
      */
     private ArrayList<Item> mInventory;
 
+    /**
+     * Current location of the Player
+     */
+    private Room mLocation;
+
     public Player() {
         // Init member variables
         mInventory = new ArrayList<Item>();
+        mLocation = null;
+    }
+
+    /**
+     * Updates the Player's location
+     * @param location Room the player is being moved to
+     */
+    public void setLocation(Room location) {
+        mLocation = location;
     }
 
     /**

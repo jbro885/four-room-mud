@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -14,6 +16,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
      * TextView for Game Output
      */
     private TextView mGameOutput;
+
+    /**
+     * ArrayList of every Room in the game
+     */
+    private ArrayList<Room> mRooms;
+
+    /**
+     * ArrayList of every Item in the game
+     */
+    private ArrayList<Item> mItems;
+
+    /**
+     * The game's player
+     */
+    private Player mPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
