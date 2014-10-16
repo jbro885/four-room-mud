@@ -40,6 +40,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private View mMovementButtons[];
 
     /**
+     * References to all other action buttons on screen
+     */
+    private View mActionButtons[];
+
+    /**
      * ArrayList of every Room in the game
      */
     private ArrayList<Room> mRooms;
@@ -81,6 +86,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             findViewById(R.id.action_south),
                             findViewById(R.id.action_east),
                             findViewById(R.id.action_west)};
+
+        // Get references to all other actions on screen
+        mActionButtons = new View[]{findViewById(R.id.action_look),
+                                    findViewById(R.id.action_inventory),
+                                    findViewById(R.id.action_get),
+                                    findViewById(R.id.action_drop)};
 
         // Init game state
         mRooms = new ArrayList<Room>();
@@ -198,6 +209,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         // Disable movement buttons
         disableMovementButtons();
+
+        // Disable action buttons
+        disableActionButtons();
     }
 
     /**
@@ -229,6 +243,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             // Re-enable movement buttons
             updateMovementButtons();
+
+            // Re-enable action buttons
+            enableActionButtons();
         }
     };
 
@@ -254,6 +271,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         // Disable movement buttons
         disableMovementButtons();
+
+        // Disable action buttons
+        disableActionButtons();
     }
 
     /**
@@ -277,6 +297,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             // Re-enable movement buttons
             updateMovementButtons();
+
+            // Re-enable action buttons
+            enableActionButtons();
         }
     };
 
@@ -405,6 +428,24 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private void disableMovementButtons() {
         for(int i = 0 ; i < mMovementButtons.length ; i++) {
             mMovementButtons[i].setVisibility(View.INVISIBLE);
+        }
+    }
+
+    /**
+     * Hide action buttons in the UI
+     */
+    private void disableActionButtons() {
+        for(int i = 0 ; i < mActionButtons.length ; i++) {
+            mActionButtons[i].setVisibility(View.INVISIBLE);
+        }
+    }
+
+    /**
+     * Display action buttons in the UI
+     */
+    private void enableActionButtons() {
+        for(int i = 0 ; i < mActionButtons.length ; i++) {
+            mActionButtons[i].setVisibility(View.VISIBLE);
         }
     }
 
