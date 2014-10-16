@@ -3,11 +3,13 @@
 
     <string name="app_name">MUD Example</string>
 
+    <!-- Clickable Actions -->
     <string name="action_look">Look</string>
     <string name="action_inventory">Inventory</string>
     <string name="action_get">Get</string>
     <string name="action_drop">Drop</string>
 
+    <!-- Example room title/descs -->
     <string name="room0_title">Starting Room</string>
     <string name="room0_desc">This is the first room.</string>
 
@@ -20,14 +22,17 @@
     <string name="room3_title">Small Room</string>
     <string name="room3_desc">This room is very small.</string>
 
+    <!-- Example item names -->
     <string name="item0_name">a rock</string>
     <string name="item1_name">a slippery rock</string>
 
+    <!-- Movement directions -->
     <string name="north">north</string>
     <string name="south">south</string>
     <string name="east">east</string>
     <string name="west">west</string>
 
+    <!-- Look/inventory strings -->
     <string name="exits">Exits:</string>
     <string name="no_exits">There are no exits to this room.</string>
 
@@ -37,6 +42,7 @@
     <string name="inventory">Inventory:</string>
     <string name="no_inventory">You are not carrying anything.</string>
 
+    <!-- Drop / get messages -->
     <string name="no_drop">You are not carrying anything to drop.</string>
     <string name="drop_msg">You drop</string>
 

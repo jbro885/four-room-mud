@@ -138,6 +138,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        // Handle user clicking on the various UI buttons
         switch(v.getId()) {
             case R.id.action_look:
                 doLook();
@@ -180,6 +181,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
      */
     public void doGet() {
         ArrayList<Item> contents = mPlayer.getLocation().getContents();
+        // Check if there are any items in this room
         if(contents.size() == 0) {
             addOutput(getString(R.string.no_get) + "\n");
             return;
@@ -235,6 +237,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
      */
     public void doDrop() {
         ArrayList<Item> inventory = mPlayer.getInventory();
+        // Check if the player is carrying anything
         if(inventory.size() == 0) {
             addOutput(getString(R.string.no_drop) + "\n");
             return;
@@ -281,6 +284,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
      * Describes the player's inventory
      */
     public void doInventory() {
+        // Iterate through player's inventory building string for output
         ArrayList<Item> inventory = mPlayer.getInventory();
         String inventoryStr = "";
         if(inventory.size() > 0) {
