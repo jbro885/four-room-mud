@@ -3,12 +3,8 @@ package mudexample.paulmandal.com.mudexample;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -39,12 +35,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private ListView mListView;
 
     /**
-     * ImageViews for our Exit buttons
+     * References to movement buttons, same order as Room.EXIT_*
      */
-    private ImageView mNorthButton;
-    private ImageView mSouthButton;
-    private ImageView mEastButton;
-    private ImageView mWestButton;
+    private View mMovementButtons[];
 
     /**
      * ArrayList of every Room in the game
@@ -83,11 +76,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mScrollView = (ScrollView)findViewById(R.id.game_output_scrollview);
         mListView = (ListView)findViewById(R.id.listview);
 
-        // Get references to the north/south/east/west buttons
-        mNorthButton = (ImageView)findViewById(R.id.action_north);
-        mSouthButton = (ImageView)findViewById(R.id.action_south);
-        mEastButton = (ImageView)findViewById(R.id.action_east);
-        mWestButton = (ImageView)findViewById(R.id.action_west);
+        // Get references to the north/south/east/west buttons, these should be in the same order as Room.EXIT_*
+        mMovementButtons = new View[]{findViewById(R.id.action_north),
+                            findViewById(R.id.action_south),
+                            findViewById(R.id.action_east),
+                            findViewById(R.id.action_west)};
 
         // Init game state
         mRooms = new ArrayList<Room>();
@@ -137,7 +130,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mPlayer.setLocation(room0);
 
         // Update UI (exit buttons)
-        updateUI();
+        updateMovementButtons();
 
         // Force look()
         doLook();
@@ -200,6 +193,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         // Hide Game Output
         mScrollView.setVisibility(View.GONE);
+
+        // Disable movement buttons
+        disableMovementButtons();
     }
 
     /**
@@ -228,6 +224,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
             // Hide the ListView and redisplay the Game Output
             mListView.setVisibility(View.GONE);
             mScrollView.setVisibility(View.VISIBLE);
+
+            // Re-enable movement buttons
+            updateMovementButtons();
         }
     };
 
@@ -249,6 +248,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         // Hide Game Output
         mScrollView.setVisibility(View.GONE);
+
+        // Disable movement buttons
+        disableMovementButtons();
     }
 
     /**
@@ -269,6 +271,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             // Output drop message
             addOutput(getString(R.string.drop_msg) + " " + item.getName() + ".\n");
+
+            // Re-enable movement buttons
+            updateMovementButtons();
         }
     };
 
@@ -376,20 +381,26 @@ public class MainActivity extends Activity implements View.OnClickListener {
     };
 
     /**
-     * Update UI based on current game state, currently just displays/hides exit buttons
+     * Displays/hides exit buttons based on available exits
      */
-    private void updateUI() {
-        // Same order as Room.EXIT_*
-        ImageView[] exitButtons = {mNorthButton, mSouthButton, mEastButton, mWestButton};
-
-        // Loop through all exits disabling/enabling exitButtons if they are not null
+    private void updateMovementButtons() {
+        // Loop through all exits disabling/enabling mMovementButtons if they are not null
         Room[] exits = mPlayer.getLocation().getExits();
         for(int i = 0 ; i < exits.length ; i++) {
             if(exits[i] != null) {
-                exitButtons[i].setVisibility(View.VISIBLE);
+                mMovementButtons[i].setVisibility(View.VISIBLE);
             } else {
-                exitButtons[i].setVisibility(View.INVISIBLE);
+                mMovementButtons[i].setVisibility(View.INVISIBLE);
             }
+        }
+    }
+
+    /**
+     * Disable movement buttons in the UI
+     */
+    private void disableMovementButtons() {
+        for(int i = 0 ; i < mMovementButtons.length ; i++) {
+            mMovementButtons[i].setVisibility(View.INVISIBLE);
         }
     }
 
@@ -404,7 +415,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         // Display room description and contents upon entry
         doLook();
         // Update the UI
-        updateUI();
+        updateMovementButtons();
     }
 
     public class ItemListAdapter extends BaseAdapter {
